@@ -7,7 +7,7 @@ let c = canvas.getContext('2d');
 let bfs;
 
 const init = () => {
-    bfs = new BFS(0, 60, 75);
+    bfs = new BFS(0.1, 60, 75);
 }
 
 const draw = () => {
