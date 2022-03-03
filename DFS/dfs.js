@@ -26,7 +26,6 @@ class DFS {
     }
 
     display() {
-
         c.strokeStyle = "hsl(0, 0%, 0%)";
         c.beginPath();
         for (let j = 0; j <= this.cols; j++) {
@@ -67,14 +66,15 @@ class DFS {
             let hasFound = false;
             for (let di = -1; di <= 1; di++) {
                 for (let dj = -1; dj <= 1; dj++) {
+                    if (Math.abs(di) + Math.abs(dj) == 2) continue;
                     let nI = i + di, nJ = j + dj;
                     let v = this.index(nI, nJ);
                     if (this.isValid(nI, nJ) && !this.isVisited[v]) {
                         this.verticesVisited++;
                         this.colors[v] = this.getHsb();
+                        this.current = v;
                         this.isVisited[v] = true;
                         this.stack.push(v);
-                        this.current = v;
                         hasFound = true;
                         break;
                     }
@@ -95,7 +95,7 @@ class DFS {
     }
 
     getHsb() {
-        let hue = Math.floor(this.verticesVisited * 360 / (this.rows * this.cols));
+        let hue = Math.floor(this.verticesVisited * 320 / (this.rows * this.cols));
         return {h: hue, s: 100, l: 50};
     }
 }
